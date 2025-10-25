@@ -196,6 +196,19 @@
     }
   }
 
+  .login-btn {
+  background: #e4e7eb;
+  color: rgb(19, 11, 11);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #0056b3;
+}
+
   /* === Responsive === */
   @media (max-width: 768px) {
     flex-wrap: wrap;

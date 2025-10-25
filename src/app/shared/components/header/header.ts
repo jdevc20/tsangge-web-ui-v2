@@ -1,41 +1,54 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
-  styleUrls: ['./header.scss']
+  styleUrls: ['./header.scss'],
 })
 export class HeaderComponent {
-  appTitle = 'Tsangge';
-  isDropdownOpen = signal(false);
-  isDarkMode = signal(false);
+  appTitle = 'ShopSmart';
   searchQuery = '';
+  private dropdownOpen = false;
+  private darkMode = false;
 
-  constructor(private router: Router) { }
+  // Simulated authentication state
+  isLoggedIn = false;
+  username = 'John Dave';
 
-  toggleDropdown() {
-    this.isDropdownOpen.update(v => !v);
-  }
-
-  toggleTheme() {
-    this.isDarkMode.update(v => !v);
-    document.body.classList.toggle('dark-theme', this.isDarkMode());
-  }
-
-  onLogout() {
-    localStorage.removeItem('access_token');
-    this.router.navigate(['/login'], { replaceUrl: true });
-  }
-
+  constructor(private router: Router) {}
 
   onSearch(query: string) {
     this.searchQuery = query;
-    console.log('Searching for:', query);
+    console.log('Search:', query);
   }
 
+  toggleTheme() {
+    this.darkMode = !this.darkMode;
+    document.body.classList.toggle('dark-mode', this.darkMode);
+  }
 
+  isDarkMode() {
+    return this.darkMode;
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  isDropdownOpen() {
+    return this.dropdownOpen;
+  }
+
+  onLogout() {
+    this.isLoggedIn = false;
+    this.dropdownOpen = false;
+    this.router.navigate(['/login']);
+  }
+
+  // Simulate login (you’d normally call an auth service)
+  login() {
+    this.isLoggedIn = true;
+    this.username = 'John Dave';
+  }
 }

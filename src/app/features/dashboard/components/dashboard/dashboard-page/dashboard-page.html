@@ -1,0 +1,15 @@
+<section class="dashboard-container">
+  <h1 class="title">What are you looking for</h1>
+
+  <h2 class="section-title">Featured Gallery</h2>
+
+  <div class="gallery-grid">
+    <div *ngFor="let image of galleryImages" class="gallery-item">
+      <img [src]="image.src" [alt]="image.alt" />
+      <div class="gallery-info">
+        <h3>{{ image.title }}</h3>
+        <p>{{ image.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

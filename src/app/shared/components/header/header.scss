@@ -1,0 +1,232 @@
+:host {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  height: 64px;
+  width: 100%;
+  margin: 10px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #394675;
+  color: #f8fafc;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-radius: 20rem;;
+  width: 90%;
+
+  /* === Left === */
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo {
+      width: 32px;
+      height: 32px;
+    }
+
+    .app-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+  }
+
+  /* === Nav === */
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+
+    a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #f8fafc;
+      }
+
+      &.active {
+        color: #38bdf8;
+        border-bottom: 2px solid #38bdf8;
+        padding-bottom: 2px;
+      }
+    }
+  }
+
+  /* === Right === */
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    /* === Searchbar === */
+    .searchbar {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9999px; /* perfect pill */
+      padding: 0.4rem 0.9rem 0.4rem 2.25rem; /* leave space for icon */
+      transition: all 0.25s ease;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 0 0 transparent;
+      height: 36px;
+      width: 200px;
+
+      &::before {
+        content: '🔍';
+        position: absolute;
+        left: 0.75rem;
+        font-size: 0.9rem;
+        opacity: 0.75;
+        pointer-events: none;
+      }
+
+      input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: #f8fafc;
+        font-size: 0.9rem;
+        width: 100%;
+        caret-color: #38bdf8;
+        font-weight: 500;
+
+        &::placeholder {
+          color: #cbd5e1;
+          opacity: 0.8;
+        }
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.18);
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      &:focus-within {
+        background: rgba(56, 189, 248, 0.15);
+        border-color: #38bdf8;
+        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+      }
+    }
+
+    /* === Theme Button === */
+    .theme-btn {
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #f8fafc;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    /* === Profile + Dropdown === */
+    .profile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .username {
+        font-weight: 600;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 42px;
+        right: 0;
+        background: #334155;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+        display: flex;
+        flex-direction: column;
+        min-width: 150px;
+        padding: 0.5rem 0;
+
+        a,
+        button {
+          background: none;
+          border: none;
+          color: #f8fafc;
+          text-align: left;
+          padding: 0.5rem 1rem;
+          font-size: 0.95rem;
+          cursor: pointer;
+          text-decoration: none;
+
+          &:hover {
+            background: #475569;
+          }
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  /* === Responsive === */
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+
+    &__nav {
+      width: 100%;
+      justify-content: space-around;
+      order: 3;
+    }
+
+    &__right {
+      order: 2;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+
+      .searchbar {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  }
+}
+
+/* === Dark Theme Override === */
+body.dark-theme {
+  background-color: #0f172a;
+  color: #f8fafc;
+
+  .header {
+    background: #1e293b;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+  }
+}

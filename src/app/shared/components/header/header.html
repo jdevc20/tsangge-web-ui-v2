@@ -1,0 +1,38 @@
+<header class="header">
+  <div class="header__left">
+    <a routerLink="/" class="header__logo">
+      <img src="assets/logo-noname.png" alt="Logo" class="logo" />
+      <span class="app-title">{{ appTitle }}</span>
+    </a>
+  </div>
+
+  <nav class="header__nav">
+    <a routerLink="/dashboard" routerLinkActive="active">👀 Look</a>
+    <a routerLink="/users" routerLinkActive="active">💭 Decide</a>
+    <a routerLink="/orders" routerLinkActive="active">🛒 Checkout</a>
+
+
+  </nav>
+
+  <div class="header__right">
+
+    <!-- 🔍 Search bar -->
+    <div class="searchbar">
+      <input type="text" placeholder="Search..." [value]="searchQuery" (input)="onSearch($event.target.value)" />
+    </div>
+    <button class="theme-btn" (click)="toggleTheme()">
+      @if (!isDarkMode()) { 🌞 } @else { 🌙 }
+    </button>
+
+    <div class="profile" (click)="toggleDropdown()">
+      <img src="assets/avatar.png" alt="User" class="avatar" />
+      <span class="username">John Dave</span>
+
+      <div class="dropdown" *ngIf="isDropdownOpen()">
+        <a routerLink="/profile">Profile</a>
+        <a routerLink="/settings">Settings</a>
+        <button (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</header>

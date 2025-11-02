@@ -29,10 +29,10 @@
     </button>
 
     <!-- 👤 Login/Profile -->
-    @if (isLoggedIn) {
+    @if (isLoggedIn()) {
       <div class="profile" (click)="toggleDropdown()">
         <img src="assets/avatar.png" alt="User" class="avatar" />
-        <span class="username">{{ username }}</span>
+        <span class="username">{{ user() }}</span>
 
         <div class="dropdown" ngIf="isDropdownOpen()">
           <a routerLink="/profile">Profile</a>
@@ -41,7 +41,7 @@
         </div>
       </div>
     } @else {
-      <button class="login-btn" (click)="login()">Login</button>
+      <button class="login-btn" (click)="goToLogin()">Login</button>
     }
   </div>
 </header>

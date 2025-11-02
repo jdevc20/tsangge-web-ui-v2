@@ -1,4 +1,6 @@
-<app-header  class="floating-header"></app-header>
+@if (showHeader()) {
+  <app-header class="floating-header"></app-header>
+}
 
 <main>
   <router-outlet></router-outlet>
